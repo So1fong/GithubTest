@@ -8,13 +8,14 @@
 
 import UIKit
 
+let request: Request = Request()
+
 class AuthenticationVC: UIViewController
 {
     @IBOutlet weak var gitHubImageView: UIImageView!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var authButton: UIButton!
-    let request: Request = Request()
     
     override func viewDidLoad()
     {
@@ -42,9 +43,10 @@ class AuthenticationVC: UIViewController
                 request.authenticationRequest(username: login, password: password)
             }
         }
-        DispatchQueue.main.async {
-            self.request.getReposRequest()
-        }
+        //DispatchQueue.main.async
+        //    {
+                request.getReposRequest()
+        //    }
     }
     
 }

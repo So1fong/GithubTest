@@ -8,17 +8,20 @@
 
 import Foundation
 
-struct ReposList: Codable
+
+protocol RequestDelegate
 {
-    var repoList: [String:String]
+    func reloadTableView()
+    //func showAlertController()
+    //func showSessionAlertController()
+    //func getSession(session: String)
 }
-
-
 
 class Request
 {
     var base64LoginAndPassword = ""
     var reposArray: [String] = []
+    var delegate: RequestDelegate?
     
     func authenticationRequest(username: String, password: String)
     {
@@ -36,7 +39,7 @@ class Request
         session.dataTask(with: request) { (data, response, error)  in
             if error != nil
             {
-                if let error = error as? NSError
+                if let error = error as NSError?
                 {
                     if error.domain == NSURLErrorDomain || error.code == NSURLErrorCannotConnectToHost
                     {
@@ -93,7 +96,7 @@ class Request
         session.dataTask(with: request) { (data, response, error)  in
             if error != nil
             {
-                if let error = error as? NSError
+                if let error = error as NSError?
                 {
                     if error.domain == NSURLErrorDomain || error.code == NSURLErrorCannotConnectToHost
                     {
@@ -113,7 +116,7 @@ class Request
                     let dictResult = json.object(at: i) as! NSDictionary
                     self.reposArray.append(dictResult.value(forKey: "name") as! String)
                 }
-                
+                self.delegate?.reloadTableView()
                 print(self.reposArray, self.reposArray.count)
             }
             catch
