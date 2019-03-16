@@ -28,13 +28,23 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
         request.alertControllerDelegate = self
     }
     
-    func showAlertController()
+    func showConnectionAlertController()
     {
         DispatchQueue.main.async
         {
-                let alertController = UIAlertController(title: "Ошибка", message: "Ошибка входа", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Ошибка", message: "Ошибка подключения", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func showAuthenticationAlertController()
+    {
+        DispatchQueue.main.async
+        {
+            let alertController = UIAlertController(title: "Ошибка", message: "Ошибка входа", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -52,38 +62,16 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
             {
                 request.authenticationRequest(username: login, password: password)
             }
-            //if success
-            //{
- 
-                print("???")
-                request.getReposRequest()
-            //DispatchQueue.main.async
-              //  {
-                //if success
-                //{
-                  //  self.performSegue(withIdentifier: "segue", sender: self)
-                    //let page = ReposListVC()
-                    //self.present(page, animated: true, completion: nil)
-                //}
-            //}
-
-                //DispatchQueue.main.async {
-                //    let vc = ReposListVC()
-                //    self.present(vc, animated: true, completion: nil)
-                //}
-            //}
+            request.getReposRequest()
         }
-
-        
-
     }
     
     func doSegue()
     {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async
+        {
             self.performSegue(withIdentifier: "segue", sender: self)
         }
-        
     }
     
 }

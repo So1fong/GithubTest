@@ -16,7 +16,8 @@ protocol RequestDelegate
 
 protocol AlertControllerDelegate
 {
-    func showAlertController()
+    func showAuthenticationAlertController()
+    func showConnectionAlertController()
     func doSegue()
 }
 
@@ -73,7 +74,7 @@ class Request
                     if error.domain == NSURLErrorDomain || error.code == NSURLErrorCannotConnectToHost
                     {
                         print("error")
-                        //self.delegate?.showSessionAlertController()
+                        self.alertControllerDelegate?.showConnectionAlertController()
                     }
                 }
                 return
@@ -84,12 +85,11 @@ class Request
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 print(json)
                 let result = self.stringify(json: json, prettyPrinted: false)
-                //let badString = "Bad credentials"
                 if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
                     {
                         print("success false")
                         success = false
-                        self.alertControllerDelegate?.showAlertController()
+                        self.alertControllerDelegate?.showAuthenticationAlertController()
                     }
                    else
                    {
@@ -126,7 +126,7 @@ class Request
                     if error.domain == NSURLErrorDomain || error.code == NSURLErrorCannotConnectToHost
                     {
                         print("error")
-                        //self.delegate?.showSessionAlertController()
+                        self.alertControllerDelegate?.showConnectionAlertController()
                     }
                 }
                 return
