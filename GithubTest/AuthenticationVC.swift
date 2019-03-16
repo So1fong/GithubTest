@@ -41,9 +41,10 @@ class AuthenticationVC: UIViewController
             {
                 request.authenticationRequest(username: login, password: password)
             }
-           
         }
-        
+        DispatchQueue.main.async {
+            self.request.getReposRequest()
+        }
     }
     
 }

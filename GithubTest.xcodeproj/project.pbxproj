@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8273233223D416800EFCCD7 /* ReposListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8273232223D416800EFCCD7 /* ReposListVC.swift */; };
 		D86CA7C9223B95B0009233C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86CA7C8223B95B0009233C9 /* AppDelegate.swift */; };
 		D86CA7CB223B95B0009233C9 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86CA7CA223B95B0009233C9 /* AuthenticationVC.swift */; };
 		D86CA7CE223B95B0009233C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86CA7CC223B95B0009233C9 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8273232223D416800EFCCD7 /* ReposListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposListVC.swift; sourceTree = "<group>"; };
 		D86CA7C5223B95B0009233C9 /* GithubTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86CA7C8223B95B0009233C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86CA7CA223B95B0009233C9 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				D86CA7C8223B95B0009233C9 /* AppDelegate.swift */,
 				D86CA7CA223B95B0009233C9 /* AuthenticationVC.swift */,
 				D86CA7E0223BA739009233C9 /* Request.swift */,
+				D8273232223D416800EFCCD7 /* ReposListVC.swift */,
 				D86CA7CC223B95B0009233C9 /* Main.storyboard */,
 				D86CA7CF223B95B1009233C9 /* Assets.xcassets */,
 				D86CA7DE223B9BDB009233C9 /* GitHub-Mark.png */,
@@ -144,6 +147,7 @@
 			files = (
 				D86CA7CB223B95B0009233C9 /* AuthenticationVC.swift in Sources */,
 				D86CA7E1223BA739009233C9 /* Request.swift in Sources */,
+				D8273233223D416800EFCCD7 /* ReposListVC.swift in Sources */,
 				D86CA7C9223B95B0009233C9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
