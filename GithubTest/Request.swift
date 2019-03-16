@@ -12,16 +12,45 @@ import Foundation
 protocol RequestDelegate
 {
     func reloadTableView()
-    //func showAlertController()
-    //func showSessionAlertController()
-    //func getSession(session: String)
 }
+
+protocol AlertControllerDelegate
+{
+    func showAlertController()
+    func doSegue()
+}
+
+var success: Bool = false
 
 class Request
 {
     var base64LoginAndPassword = ""
     var reposArray: [String] = []
-    var delegate: RequestDelegate?
+    var requestDelegate: RequestDelegate?
+    var alertControllerDelegate: AlertControllerDelegate?
+    
+    func stringify(json: Any, prettyPrinted: Bool = false) -> String
+    {
+        var options: JSONSerialization.WritingOptions = []
+        if prettyPrinted
+        {
+            options = JSONSerialization.WritingOptions.prettyPrinted
+        }
+        
+        do
+        {
+            let data = try JSONSerialization.data(withJSONObject: json, options: options)
+            if let string = String(data: data, encoding: String.Encoding.utf8)
+            {
+                return string
+            }
+        } catch
+        {
+            print(error)
+        }
+        
+        return ""
+    }
     
     func authenticationRequest(username: String, password: String)
     {
@@ -54,36 +83,32 @@ class Request
             {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 print(json)
-                //self.reposArray.append(json.value(forKey: "name") as! String)
-                //print(self.reposArray, self.reposArray.count)
-                //print("value for key public repos \(json.value(forKey: "public_repos"))")
-                //if jsonResult.value(forKey: "status") as! String == "OK",
-                //    let routes = jsonResult.value(forKey: "routes") as? NSArray,
-                //    let legs = routes.value(forKey: "legs") as? NSArray,
-                //    let duration = legs.value(forKey: "duration_in_traffic") as? NSArray {
-                    
-                //    for i in 0..<duration.count {
-                //        let timeDuration = duration[i] as! NSArray
-                //        if let time = timeDuration.value(forKey: "value") as? NSArray {
-                //            print("Current Time: \(Int(time[0] as! NSNumber)/60) Min")
-                //
-                //        }
-                 //   }
-                //}
-                
-                //let answer = try JSONDecoder().decode(newSessionAnswer.self, from: data)
-                //print("Parsed:")
-                //print(answer)
-                //let str: String = answer.data.session
-                //idSession = str
-                //print("sessionId = \(idSession)")
-                //self.delegate?.getSession(session: idSession)
+                let result = self.stringify(json: json, prettyPrinted: false)
+                let badString = "Bad credentials"
+                if (result.contains(badString))
+                    {
+                        print("success false")
+                        success = false
+                        self.alertControllerDelegate?.showAlertController()
+                    }
+                   else
+                   {
+                        success = true
+                   }
+                print("SUCCESS \(success)")
+                print("SUCCESS???")
+                if success
+                {
+                    print("SUCCESS???")
+                    self.alertControllerDelegate?.doSegue()
+                }
             }
             catch
             {
                 print(error)
             }
             }.resume()
+
     }
     
     func getReposRequest()
@@ -109,15 +134,19 @@ class Request
             guard let data = data else { return }
             do
             {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSArray
-                print(json)
-                for i in 0..<json.count
+                if success
                 {
-                    let dictResult = json.object(at: i) as! NSDictionary
-                    self.reposArray.append(dictResult.value(forKey: "name") as! String)
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSArray
+                    print(json)
+                    for i in 0..<json.count
+                    {
+                        let dictResult = json.object(at: i) as! NSDictionary
+                        self.reposArray.append(dictResult.value(forKey: "name") as! String)
+                    }
+                    self.requestDelegate?.reloadTableView()
+                    print(self.reposArray, self.reposArray.count)
                 }
-                self.delegate?.reloadTableView()
-                print(self.reposArray, self.reposArray.count)
+
             }
             catch
             {

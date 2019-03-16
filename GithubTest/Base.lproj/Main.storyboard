@@ -64,7 +64,6 @@
                                 <state key="normal" title="Авторизоваться"/>
                                 <connections>
                                     <action selector="authButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UII-5f-bJc"/>
-                                    <segue destination="98S-DP-FiG" kind="show" id="KFx-a5-8po"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -76,6 +75,7 @@
                         <outlet property="gitHubImageView" destination="qag-4D-1sK" id="MxQ-Dw-JY5"/>
                         <outlet property="loginTextField" destination="bug-XA-wKg" id="f7N-cv-FDG"/>
                         <outlet property="passwordTextField" destination="sYY-fb-Xun" id="F5z-Vy-7xU"/>
+                        <segue destination="98S-DP-FiG" kind="show" identifier="segue" id="cnS-74-zTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

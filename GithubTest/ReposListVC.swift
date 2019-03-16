@@ -47,7 +47,7 @@ class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITab
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        request.delegate = self
+        request.requestDelegate = self
         // Do any additional setup after loading the view.
     }
     
