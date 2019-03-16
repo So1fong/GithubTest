@@ -84,8 +84,8 @@ class Request
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 print(json)
                 let result = self.stringify(json: json, prettyPrinted: false)
-                let badString = "Bad credentials"
-                if (result.contains(badString))
+                //let badString = "Bad credentials"
+                if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
                     {
                         print("success false")
                         success = false
