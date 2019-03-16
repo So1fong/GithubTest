@@ -14,6 +14,7 @@ class AuthenticationVC: UIViewController
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var authButton: UIButton!
+    let request: Request = Request()
     
     override func viewDidLoad()
     {
@@ -23,6 +24,7 @@ class AuthenticationVC: UIViewController
         let imageName = "GitHub-Mark.png"
         let image = UIImage(named: imageName)
         gitHubImageView.image = image
+        
     }
     
     @objc func dismissKeyboard()
@@ -32,6 +34,15 @@ class AuthenticationVC: UIViewController
     
     @IBAction func authButtonTapped(_ sender: Any)
     {
+        
+        if let login = loginTextField.text
+        {
+            if let password = passwordTextField.text
+            {
+                request.authenticationRequest(username: login, password: password)
+            }
+           
+        }
         
     }
     
