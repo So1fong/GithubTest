@@ -37,7 +37,6 @@ class Request
         {
             options = JSONSerialization.WritingOptions.prettyPrinted
         }
-        
         do
         {
             let data = try JSONSerialization.data(withJSONObject: json, options: options)
@@ -87,7 +86,6 @@ class Request
                 let result = self.stringify(json: json, prettyPrinted: false)
                 if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
                     {
-                        print("success false")
                         success = false
                         self.alertControllerDelegate?.showAuthenticationAlertController()
                     }
@@ -95,11 +93,8 @@ class Request
                    {
                         success = true
                    }
-                print("SUCCESS \(success)")
-                print("SUCCESS???")
                 if success
                 {
-                    print("SUCCESS???")
                     self.alertControllerDelegate?.doSegue()
                 }
             }

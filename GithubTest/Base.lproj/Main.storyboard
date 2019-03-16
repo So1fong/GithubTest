@@ -102,6 +102,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hG2-56-rAF" kind="show" id="MqR-HU-3Sr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -123,6 +126,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFX-af-ocG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="949.60000000000002" y="133.74384236453201"/>
+        </scene>
+        <!--Repo DescriptionVC-->
+        <scene sceneID="XhT-wV-L8J">
+            <objects>
+                <viewController id="hG2-56-rAF" customClass="RepoDescriptionVC" customModule="GithubTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RxW-N4-r3a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YgG-Yl-mhR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Jn-Qm-WnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="134"/>
         </scene>
     </scenes>
 </document>
