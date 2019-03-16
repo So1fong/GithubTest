@@ -36,7 +36,6 @@ extension UIImageView
 
 class RepoDescriptionVC: UIViewController
 {
-
     @IBOutlet weak var ownerAvatarImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var repoNameLabel: UILabel!
@@ -48,6 +47,8 @@ class RepoDescriptionVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
         if let url = URL(string: repoDescriptions[myIndex].authorAvatar)
         {
             ownerAvatarImageView.downloadedFrom(url: url)

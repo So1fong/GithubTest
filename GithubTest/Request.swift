@@ -118,6 +118,10 @@ class Request
                    {
                         success = true
                    }
+                if buttonTapped
+                {
+
+                }
                 if success
                 {
                     self.alertControllerDelegate?.doSegue()

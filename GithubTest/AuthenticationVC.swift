@@ -9,6 +9,7 @@
 import UIKit
 
 let request: Request = Request()
+var buttonTapped = false
 
 class AuthenticationVC: UIViewController, AlertControllerDelegate
 {
@@ -20,6 +21,17 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if let login = UserDefaults.standard.string(forKey: "login")
+        {
+            if let password = UserDefaults.standard.string(forKey: "password")
+            {
+                if login != "" && password != ""
+                {
+                    buttonTapped = false
+                    authorizeAutomatically(login: login, password: password)
+                }
+            }
+        }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         let imageName = "GitHub-Mark.png"
@@ -53,17 +65,34 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
         view.endEditing(true)
     }
     
-    @IBAction func authButtonTapped(_ sender: Any)
+    func authorizeAutomatically(login: String, password: String)
     {
-        
+        request.authenticationRequest(username: login, password: password)
+        request.getReposRequest()
+    }
+    
+    func authorizeWithLoginAndPassword()
+    {
         if let login = loginTextField.text
         {
             if let password = passwordTextField.text
             {
                 request.authenticationRequest(username: login, password: password)
+
             }
             request.getReposRequest()
         }
+    }
+    
+    @IBAction func authButtonTapped(_ sender: Any)
+    {
+        buttonTapped = true
+        let login = loginTextField.text
+        let password = passwordTextField.text
+        UserDefaults.standard.set(login, forKey: "login")
+        UserDefaults.standard.set(password, forKey: "password")
+        UserDefaults.standard.synchronize()
+        authorizeWithLoginAndPassword()
     }
     
     func doSegue()
