@@ -21,12 +21,37 @@ protocol AlertControllerDelegate
     func doSegue()
 }
 
+struct RepoDescription
+{
+    var repoName: String = ""
+    var repoDescription: String? = ""
+    var authorName = ""
+    var authorAvatar = ""
+    var forksCount: Int = 0
+    var watchersCount: Int = 0
+}
+
+func nullToNil(value : AnyObject?) -> AnyObject?
+{
+    if value is NSNull
+    {
+        return nil
+    }
+    else
+    {
+        return value
+    }
+}
+
+var repoDescriptions: [RepoDescription] = [RepoDescription()]
 var success: Bool = false
 
 class Request
 {
+    //Общая информация о репозитории: название, описание, автор, аватарка автора, количество forks и watches
     var base64LoginAndPassword = ""
-    var reposArray: [String] = []
+
+    
     var requestDelegate: RequestDelegate?
     var alertControllerDelegate: AlertControllerDelegate?
     
@@ -135,11 +160,28 @@ class Request
                     print(json)
                     for i in 0..<json.count
                     {
+                        repoDescriptions.append(RepoDescription())
                         let dictResult = json.object(at: i) as! NSDictionary
-                        self.reposArray.append(dictResult.value(forKey: "name") as! String)
+                        repoDescriptions[i].repoName = dictResult.value(forKey: "name") as! String
+                        //var value: NSNull
+                        //if dictResult.value(forKey: "description") is NSNull
+                        //{
+                        //    value = dictResult.value(forKey: "description") as! NSNull
+                        //    nullToNil(value: value)
+                        //}
+                        var value = dictResult.value(forKey: "description")
+                        repoDescriptions[i].repoDescription = nullToNil(value: value as AnyObject) as? String
+                        //repoDescriptions[i].repoDescription = value as? String
+                        repoDescriptions[i].watchersCount = dictResult.value(forKey: "watchers_count") as! Int
+                        repoDescriptions[i].forksCount = dictResult.value(forKey: "forks_count") as! Int
+                        let ownerDict = dictResult.value(forKey: "owner") as! NSDictionary
+                        repoDescriptions[i].authorName = ownerDict.value(forKey: "login") as! String
+                        repoDescriptions[i].authorAvatar = ownerDict.value(forKey: "avatar_url") as! String
+
+                        
                     }
                     self.requestDelegate?.reloadTableView()
-                    print(self.reposArray, self.reposArray.count)
+                    //print(self.repoNamesArray, self.repoNamesArray.count)
                 }
 
             }

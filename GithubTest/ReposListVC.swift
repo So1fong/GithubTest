@@ -8,6 +8,8 @@
 
 import UIKit
 
+var myIndex = 0
+
 class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
 {
     func reloadTableView()
@@ -23,24 +25,24 @@ class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return request.reposArray.count
+        return repoDescriptions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if request.reposArray.count != 0
+        if repoDescriptions.count != 0
         {
-            cell.textLabel?.text = request.reposArray[indexPath.row]
+            cell.textLabel?.text = repoDescriptions[indexPath.row].repoName
         }
         
         return cell
     }
     
-    //func numberOfRows(inSection section: Int) -> Int
-    //{
-    //    return request.reposArray.count
-    //}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        myIndex = indexPath.row
+    }
     
     override func viewDidLoad()
     {
@@ -48,17 +50,7 @@ class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
         request.requestDelegate = self
-        // Do any additional setup after loading the view.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

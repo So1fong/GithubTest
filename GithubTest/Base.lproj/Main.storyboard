@@ -75,7 +75,7 @@
                         <outlet property="gitHubImageView" destination="qag-4D-1sK" id="MxQ-Dw-JY5"/>
                         <outlet property="loginTextField" destination="bug-XA-wKg" id="f7N-cv-FDG"/>
                         <outlet property="passwordTextField" destination="sYY-fb-Xun" id="F5z-Vy-7xU"/>
-                        <segue destination="98S-DP-FiG" kind="show" identifier="segue" id="cnS-74-zTk"/>
+                        <segue destination="cOg-dB-7PC" kind="show" identifier="segue" id="jJm-my-xx3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,7 +103,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="hG2-56-rAF" kind="show" id="MqR-HU-3Sr"/>
+                                            <segue destination="hG2-56-rAF" kind="show" id="gaN-3Y-Cf4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -119,13 +119,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="QlF-C5-Drd"/>
                     </view>
+                    <navigationItem key="navigationItem" id="eh1-KA-b5V">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="kgY-iw-9BB"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="iwc-y7-qmR" id="KUO-Ag-bx9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFX-af-ocG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949.60000000000002" y="133.74384236453201"/>
+            <point key="canvasLocation" x="1748" y="133"/>
         </scene>
         <!--Repo DescriptionVC-->
         <scene sceneID="XhT-wV-L8J">
@@ -134,13 +137,85 @@
                     <view key="view" contentMode="scaleToFill" id="RxW-N4-r3a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-cl-bOo">
+                                <rect key="frame" x="16" y="262" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Автор: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDg-Hh-4qp">
+                                <rect key="frame" x="16" y="233" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyF-Gj-WeJ">
+                                <rect key="frame" x="16" y="307" width="343" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forks: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-No-hxj">
+                                <rect key="frame" x="16" y="555" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Watchers: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlf-xN-lrR">
+                                <rect key="frame" x="16" y="596" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGw-hp-jWS">
+                                <rect key="frame" x="144" y="658" width="86" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Коммиты"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQl-X9-Pdl">
+                                <rect key="frame" x="127" y="108" width="121" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YgG-Yl-mhR"/>
                     </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="HDg-Hh-4qp" id="4u8-Yd-rWi"/>
+                        <outlet property="commitsButton" destination="OGw-hp-jWS" id="aU4-Oc-FDy"/>
+                        <outlet property="forksCountLabel" destination="Y5U-No-hxj" id="66e-PS-OKo"/>
+                        <outlet property="ownerAvatarImageView" destination="OQl-X9-Pdl" id="O2g-u7-ISS"/>
+                        <outlet property="repoDescriptionLabel" destination="pyF-Gj-WeJ" id="PRp-w3-vjU"/>
+                        <outlet property="repoNameLabel" destination="Zdd-cl-bOo" id="keG-N7-e2v"/>
+                        <outlet property="watchersLabel" destination="dlf-xN-lrR" id="v9h-7y-Vu1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jn-Qm-WnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="134"/>
+            <point key="canvasLocation" x="2644" y="133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Ow-Bm-lO1">
+            <objects>
+                <navigationController id="cOg-dB-7PC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ze4-tQ-5HR">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="98S-DP-FiG" kind="relationship" relationship="rootViewController" id="QmL-5X-OKN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VkN-LQ-JG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="134"/>
         </scene>
     </scenes>
 </document>
