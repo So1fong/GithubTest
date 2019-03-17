@@ -119,7 +119,6 @@ class Request
             do
             {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
-                //print(json)
                 let result = self.stringify(json: json, prettyPrinted: false)
                 if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
                     {
@@ -130,10 +129,10 @@ class Request
                    {
                         success = true
                    }
-                if buttonTapped
-                {
-
-                }
+ //               if buttonTapped
+ //               {
+//
+ //               }
                 if success
                 {
                     self.alertControllerDelegate?.doSegue()
@@ -189,7 +188,6 @@ class Request
                     }
                     self.repoDelegate?.reloadTableView()
                 }
-
             }
             catch
             {
@@ -227,7 +225,6 @@ class Request
                     commit = []
                     for i in 0..<json.count
                     {
-                        
                         commit.append(CommitDescription())
                         let dictResult = json.object(at: i) as! NSDictionary
                         commit[i].sha = dictResult.value(forKey: "sha") as! String

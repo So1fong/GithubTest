@@ -18,10 +18,10 @@ class ReposListVC: UIViewController, RepoDelegate, UITableViewDelegate, UITableV
         {
             self.tableView.reloadData()
         }
-        
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var exitButton: UIButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -51,5 +51,15 @@ class ReposListVC: UIViewController, RepoDelegate, UITableViewDelegate, UITableV
         request.repoDelegate = self
     }
     
-
+    @IBAction func exitButtonTapped(_ sender: UIButton)
+    {
+        UserDefaults.standard.set("", forKey: "login")
+        UserDefaults.standard.set("", forKey: "password")
+        UserDefaults.standard.synchronize()
+        buttonTapped = true
+        navigationController?.popViewController(animated: true)
+        //let page = AuthenticationVC()
+        //present(page, animated: true, completion: nil)
+    }
+    
 }

@@ -21,32 +21,43 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        if let login = UserDefaults.standard.string(forKey: "login")
+        if buttonTapped
         {
-            if let password = UserDefaults.standard.string(forKey: "password")
+            loginTextField.text = ""
+            passwordTextField.text = ""
+        }
+            if let login = UserDefaults.standard.string(forKey: "login")
             {
-                if login != "" && password != ""
+                if let password = UserDefaults.standard.string(forKey: "password")
                 {
-                    buttonTapped = false
-                    authorizeAutomatically(login: login, password: password)
+                    if login != "" && password != ""
+                    {
+                        //buttonTapped = false
+                        //if !buttonTapped
+                        //{
+                            authorizeAutomatically(login: login, password: password)
+                        //}
+                        
+                    }
                 }
             }
-        }
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        let imageName = "GitHub-Mark.png"
-        let image = UIImage(named: imageName)
-        gitHubImageView.image = image
-        request.alertControllerDelegate = self
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            view.addGestureRecognizer(tap)
+            let imageName = "GitHub-Mark.png"
+            let image = UIImage(named: imageName)
+            gitHubImageView.image = image
+            request.alertControllerDelegate = self
+        //}
+
     }
     
     func showConnectionAlertController()
     {
         DispatchQueue.main.async
         {
-                let alertController = UIAlertController(title: "Ошибка", message: "Ошибка подключения", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "Ошибка", message: "Ошибка подключения", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -86,7 +97,6 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
     
     @IBAction func authButtonTapped(_ sender: Any)
     {
-        buttonTapped = true
         let login = loginTextField.text
         let password = passwordTextField.text
         UserDefaults.standard.set(login, forKey: "login")
