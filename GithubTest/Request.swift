@@ -31,6 +31,14 @@ struct RepoDescription
     var watchersCount: Int = 0
 }
 
+struct CommitDescription
+{
+    var sha: String = ""
+    var message: String = ""
+    var author: String = ""
+    var date: String = ""
+}
+
 func nullToNil(value : AnyObject?) -> AnyObject?
 {
     if value is NSNull
@@ -44,14 +52,12 @@ func nullToNil(value : AnyObject?) -> AnyObject?
 }
 
 var repoDescriptions: [RepoDescription] = [RepoDescription()]
+var commit: [CommitDescription] = [CommitDescription()]
 var success: Bool = false
 
 class Request
 {
-    //Общая информация о репозитории: название, описание, автор, аватарка автора, количество forks и watches
     var base64LoginAndPassword = ""
-
-    
     var requestDelegate: RequestDelegate?
     var alertControllerDelegate: AlertControllerDelegate?
     
