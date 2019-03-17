@@ -47,8 +47,7 @@ class RepoDescriptionVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let backItem = UIBarButtonItem()
-        backItem.title = "Назад"
+
         if let url = URL(string: repoDescriptions[myIndex].authorAvatar)
         {
             ownerAvatarImageView.downloadedFrom(url: url)
@@ -67,6 +66,12 @@ class RepoDescriptionVC: UIViewController
         
         watchersLabel.text = "Watchers: " + String(repoDescriptions[myIndex].watchersCount)
         forksCountLabel.text = "Forks: " + String(repoDescriptions[myIndex].forksCount)
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
     }
     
     @IBAction func commitButtonTapped(_ sender: UIButton)

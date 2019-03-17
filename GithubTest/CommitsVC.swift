@@ -8,20 +8,31 @@
 
 import UIKit
 
-class CommitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class CommitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CommitDelegate
 {
+    func reloadTableView()
+    {
+        DispatchQueue.main.async
+        {
+            self.commitsTableView.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1 //количество коммитов
+        return commit.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "commitCell", for: indexPath)
-        //if repoDescriptions.count != 0
-        //{
-        //    cell.textLabel?.text = repoDescriptions[indexPath.row].repoName
-        //}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commitCell", for: indexPath) as! CommitTableViewCell
+        if commit.count != 0
+        {
+            cell.hashLabel.text = commit[indexPath.row].sha
+            cell.messageLabel.text = commit[indexPath.row].message
+            cell.authorLabel.text = commit[indexPath.row].author
+            cell.dateLabel.text = commit[indexPath.row].date
+        }
         return cell
     }
     
@@ -30,7 +41,9 @@ class CommitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        commitsTableView.rowHeight = 60
+        commitsTableView.delegate = self
+        commitsTableView.dataSource = self
+        request.commitDelegate = self
+        commitsTableView.rowHeight = 150
     }
-    
 }

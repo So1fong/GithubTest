@@ -10,7 +10,7 @@ import UIKit
 
 var myIndex = 0
 
-class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
+class ReposListVC: UIViewController, RepoDelegate, UITableViewDelegate, UITableViewDataSource
 {
     func reloadTableView()
     {
@@ -48,7 +48,7 @@ class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITab
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        request.requestDelegate = self
+        request.repoDelegate = self
     }
     
 
