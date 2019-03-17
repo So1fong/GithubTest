@@ -46,6 +46,7 @@ class ReposListVC: UIViewController, RepoDelegate, UITableViewDelegate, UITableV
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false)
         tableView.delegate = self
         tableView.dataSource = self
         request.repoDelegate = self
@@ -53,13 +54,8 @@ class ReposListVC: UIViewController, RepoDelegate, UITableViewDelegate, UITableV
     
     @IBAction func exitButtonTapped(_ sender: UIButton)
     {
-        UserDefaults.standard.set("", forKey: "login")
-        UserDefaults.standard.set("", forKey: "password")
-        UserDefaults.standard.synchronize()
         buttonTapped = true
         navigationController?.popViewController(animated: true)
-        //let page = AuthenticationVC()
-        //present(page, animated: true, completion: nil)
     }
     
 }

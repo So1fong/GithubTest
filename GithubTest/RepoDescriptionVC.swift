@@ -52,7 +52,6 @@ class RepoDescriptionVC: UIViewController
         {
             ownerAvatarImageView.downloadedFrom(url: url)
         }
-        
         authorLabel.text = repoDescriptions[myIndex].authorName
         repoNameLabel.text = repoDescriptions[myIndex].repoName
         if let description = repoDescriptions[myIndex].repoDescription
@@ -63,22 +62,18 @@ class RepoDescriptionVC: UIViewController
         {
             repoDescriptionLabel.text = "Описание: нет"
         }
-        
         watchersLabel.text = "Watchers: " + String(repoDescriptions[myIndex].watchersCount)
         forksCountLabel.text = "Forks: " + String(repoDescriptions[myIndex].forksCount)
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Назад"
+        let backItem = navigationItem.backBarButtonItem
+        backItem?.title = "Назад"
     }
     
     @IBAction func commitButtonTapped(_ sender: UIButton)
     {
         request.getCommitsRequest(ownerName: repoDescriptions[myIndex].authorName, repoName: repoDescriptions[myIndex].repoName)
     }
-    
-
-
 }

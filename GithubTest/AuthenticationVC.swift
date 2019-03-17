@@ -21,34 +21,24 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        if buttonTapped
+        if let login = UserDefaults.standard.string(forKey: "login")
         {
-            loginTextField.text = ""
-            passwordTextField.text = ""
-        }
-            if let login = UserDefaults.standard.string(forKey: "login")
+            if let password = UserDefaults.standard.string(forKey: "password")
             {
-                if let password = UserDefaults.standard.string(forKey: "password")
+                loginTextField.text = login
+                passwordTextField.text = password
+                if login != "" && password != ""
                 {
-                    if login != "" && password != ""
-                    {
-                        //buttonTapped = false
-                        //if !buttonTapped
-                        //{
-                            authorizeAutomatically(login: login, password: password)
-                        //}
-                        
-                    }
+                   authorizeAutomatically(login: login, password: password)
                 }
             }
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            view.addGestureRecognizer(tap)
-            let imageName = "GitHub-Mark.png"
-            let image = UIImage(named: imageName)
-            gitHubImageView.image = image
-            request.alertControllerDelegate = self
-        //}
-
+        }
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        let imageName = "GitHub-Mark.png"
+        let image = UIImage(named: imageName)
+        gitHubImageView.image = image
+        request.alertControllerDelegate = self
     }
     
     func showConnectionAlertController()
@@ -89,7 +79,6 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
             if let password = passwordTextField.text
             {
                 request.authenticationRequest(username: login, password: password)
-
             }
             request.getReposRequest()
         }
@@ -112,6 +101,5 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
             self.performSegue(withIdentifier: "segue", sender: self)
         }
     }
-    
 }
 

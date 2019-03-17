@@ -28,8 +28,8 @@ class CommitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         let cell = tableView.dequeueReusableCell(withIdentifier: "commitCell", for: indexPath) as! CommitTableViewCell
         if commit.count != 0
         {
-            cell.hashLabel.text = commit[indexPath.row].sha
-            cell.messageLabel.text = commit[indexPath.row].message
+            cell.hashLabel.text = "hash: " + commit[indexPath.row].sha
+            cell.messageLabel.text = "Описание: " + commit[indexPath.row].message
             cell.authorLabel.text = commit[indexPath.row].author
             cell.dateLabel.text = commit[indexPath.row].date
         }
