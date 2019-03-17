@@ -24,5 +24,4 @@ class CommitTableViewCell: UITableViewCell
     {
         super.setSelected(selected, animated: animated)
     }
-
 }

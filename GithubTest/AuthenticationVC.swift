@@ -21,6 +21,7 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        request.alertControllerDelegate = self
         if let login = UserDefaults.standard.string(forKey: "login")
         {
             if let password = UserDefaults.standard.string(forKey: "password")
@@ -38,7 +39,6 @@ class AuthenticationVC: UIViewController, AlertControllerDelegate
         let imageName = "GitHub-Mark.png"
         let image = UIImage(named: imageName)
         gitHubImageView.image = image
-        request.alertControllerDelegate = self
     }
     
     func showConnectionAlertController()
