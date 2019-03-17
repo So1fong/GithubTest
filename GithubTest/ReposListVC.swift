@@ -35,7 +35,6 @@ class ReposListVC: UIViewController, RequestDelegate, UITableViewDelegate, UITab
         {
             cell.textLabel?.text = repoDescriptions[indexPath.row].repoName
         }
-        
         return cell
     }
     
