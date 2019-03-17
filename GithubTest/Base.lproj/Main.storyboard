@@ -179,6 +179,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Коммиты"/>
                                 <connections>
+                                    <action selector="commitButtonTapped:" destination="hG2-56-rAF" eventType="touchUpInside" id="dBl-8q-7GU"/>
                                     <segue destination="FaN-FQ-TcB" kind="show" id="5YA-BW-ep2"/>
                                 </connections>
                             </button>

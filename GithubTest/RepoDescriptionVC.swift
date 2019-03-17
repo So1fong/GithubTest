@@ -69,6 +69,10 @@ class RepoDescriptionVC: UIViewController
         forksCountLabel.text = "Forks: " + String(repoDescriptions[myIndex].forksCount)
     }
     
+    @IBAction func commitButtonTapped(_ sender: UIButton)
+    {
+        request.getCommitsRequest(ownerName: repoDescriptions[myIndex].authorName, repoName: repoDescriptions[myIndex].repoName)
+    }
     
 
 
